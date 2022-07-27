@@ -20,5 +20,15 @@ jobs:
       with:
         node-version: 17
 
-    - name: Install dependencies
-      run: make clean install build
+    - name: Install Dependencies
+      run: make clean install
+
+    - name: Build
+      run: make clean build
+
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          target/YourPlace
