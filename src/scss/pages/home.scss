@@ -1,0 +1,89 @@
+@import "../global.scss";
+@import "../components/check.scss";
+
+label {
+  color: white;
+}
+header {
+  padding-top: 10px;
+}
+#logo {
+  height: 90px;
+  width: 400px;
+  padding-bottom: 10px;
+}
+.btn {
+  transition: all .2s ease-in-out;
+}
+#peraBtn {
+  background: black;
+  height: 60px;
+  width: 175px;
+  margin-top: 0;
+  padding-top: 0;
+  margin-left: 20px;
+}
+#peraLogo {
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+}
+#peraBtn:hover {
+  background: #1D1D1DFF;
+}
+#peraBtn:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+#myalgoBtn {
+  background: black;
+  height: 60px;
+  width: 175px;
+  margin-top: 0;
+  padding-top: 0;
+  margin-left: 20px;
+}
+#myalgoLogo {
+  height: 25px;
+  width: 25px;
+  margin-right: 10px;
+}
+#myalgoBtn:hover {
+  background: #1D1D1DFF;
+}
+#myalgoBtn:active {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+#submitBtn {
+  width: 175px;
+  height: 75px;
+  font-size: 30px;
+}
+#tagline {
+  padding-bottom: 10px;
+}
+#subtagline {
+  padding-bottom: 10px;
+}
+#walletConnectCheck {
+  margin: 0 0 0 30px;
+  top: 5px;
+}
+.h-captcha {
+  margin-top: 5px;
+  padding-bottom: 20px;
+}
+a:link,
+a:visited {
+  color: map-get($colors, "text");
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  color: map-get($colors, "text");
+  background-color: map-get($colors, "tertiary");
+  text-decoration: underline;
+}

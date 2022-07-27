@@ -1,0 +1,68 @@
+$colors: (
+        "primary": #525252,
+        "secondary": #414141,
+        "tertiary": #313131,
+        "quaternary": #333FFF,
+        "light": #D3D3D3,
+        "dark": #313131,
+        "success": #3E8D63,
+        "info": #D3D3D3,
+        "warning": #FFFF00,
+        "danger": #FF0000,
+        "text": #D3D3D3,
+        "link": #333FFF,
+);
+
+/* Bootstrap Colors */
+$body-bg: map-get($colors, "tertiary");
+$body-color: map-get($colors, "text");
+$primary: map-get($colors, "primary");
+$secondary: map-get($colors, "secondary");
+$light: map-get($colors, "light");
+$dark: map-get($colors, "dark");
+$success: map-get($colors, "success");
+$link-color: map-get($colors, "link");
+
+/* Boostrap Components */
+$modal-content-bg: map-get($colors, "tertiary");
+$component-active-color: map-get($colors, "text");
+$component-active-bg: map-get($colors, "quaternary");
+$form-check-input-border: 1px solid map-get($colors, "text");
+$form-switch-color: map-get($colors, "text");
+$accordion-bg: map-get($colors, "tertiary");
+$accordion-button-active-bg: map-get($colors, "primary");
+$accordion-button-active-color: map-get($colors, "text");
+$accordion-button-focus-box-shadow: none;
+$btn-border-width: 0px;
+// ------- testing btn --------
+$btn-active-box-shadow: none;
+$btn-focus-box-shadow: none;
+$btn-box-shadow: none;
+$box-shadow: none;
+$enable-shadows: false;
+
+
+@import "~bootstrap/scss/bootstrap";
+
+$theme-colors: map-merge($theme-colors, $colors);
+
+/* Mixin and Pure CSS Styling */
+.btn {
+  color: map-get($colors, "text");
+  @include button-variant(
+                  map-get($colors, "quaternary"),
+                  map-get($colors, "quaternary"));
+}
+.btn:active,
+.btn:focus {
+  box-shadow: none;
+}
+textarea {
+  outline: none;
+}
+.centered {
+  margin: auto;
+  text-align: center;
+  left: 50%;
+  right: 50%;
+}

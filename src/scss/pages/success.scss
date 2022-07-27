@@ -1,0 +1,12 @@
+@import "../global.scss";
+
+.img-store {
+  width: 175px;
+  height: 60px;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+}
+
+.img-store:hover {
+  transform: scale(1.1);
+}

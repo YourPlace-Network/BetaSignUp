@@ -1,0 +1,14 @@
+@import "../global";
+
+.check {
+  position: relative;
+  transform: rotate(45deg);
+  height: 25px;
+  width: 15px;
+  border-bottom: 7px solid map-get($colors, "success");
+  border-right: 7px solid map-get($colors, "success");
+  display: none;
+  //display: inline-block;
+  //margin: 0 0 0 30px;
+  //top: 5px;
+}

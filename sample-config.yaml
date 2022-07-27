@@ -1,0 +1,14 @@
+server:
+  port: 443
+  cert: server.crt
+  key: server.key
+hcaptcha:
+  sitekey: aaaaaaaaaaaaaaaaa
+  secret: aaaaaaaaaaaaaaaaa
+mysql:
+  host: db.domain.tld
+  port: 12345
+  database: dbname
+  username: admin
+  password: aaaaaaaaaaaaaaaaaaaaaaaaaa
+  ca: ca-certificate.crt
