@@ -33,15 +33,15 @@ endif
 
 linuxbuild:
 	npx webpack --config src/typescript/webpack.config.js
-ifeq ($(OS), Windows_NT)
-	IF EXIST target\ del /F /Q target\*
-	$(GO) build -o target\YourPlace.exe main.go
-else
-	rm -f target/*
+# ifeq ($(OS), Windows_NT)
+#	IF EXIST target\ del /F /Q target\*
+#	$(GO) build -o target\YourPlace.exe main.go
+#else
+#	rm -f target/*
 	export GOARCH=amd64
 	export GOOS=linux
 	go build -o target/YourPlace main.go
-endif
+#endif
 
 clean:
 ifeq ($(OS), Windows_NT)
