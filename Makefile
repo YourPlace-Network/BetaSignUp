@@ -15,9 +15,10 @@ endif
 
 install:
 ifeq ($(OS), Windows_NT)
-
+	choco install -y --force nodejs
+	npm install package.json
 else
-
+	npm install package.json
 endif
 
 build:
