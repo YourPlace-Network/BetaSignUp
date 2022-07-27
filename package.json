@@ -21,7 +21,8 @@
     "terminal.css": "^0.7.2",
     "tslib": "^2.4.0",
     "util": "^0.12.4",
-    "hcaptcha": "^0.1.1"
+    "hcaptcha": "^0.1.1",
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "@electron/get": "^1.14.1",

@@ -21,4 +21,4 @@ jobs:
         node-version: 17
 
     - name: Install dependencies
-      run: make clean build
+      run: make clean install build
