@@ -19,3 +19,4 @@ node_modules/
 config.yaml
 *.crt
 src/www/js/*.js
+stats.json

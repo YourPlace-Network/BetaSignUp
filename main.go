@@ -7,7 +7,6 @@ import (
 	"embed"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
-	"gopkg.in/yaml.v2"
 	"html/template"
 	"io/fs"
 	"io/ioutil"
@@ -65,7 +64,7 @@ func main() {
 	database.Init(dsn, conf.Mysql.CA)
 	database.Setup()
 	// Configure Gin Server
-	gin.SetMode(gin.DebugMode)
+	gin.SetMode(gin.ReleaseMode)
 	gin.DisableConsoleColor()
 	router := gin.Default()
 	router.Use(gin.Logger())
