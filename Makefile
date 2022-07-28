@@ -26,10 +26,10 @@ build:
 	npx webpack --config src/typescript/webpack.config.js
 ifeq ($(OS), Windows_NT)
 	IF EXIST target\ del /F /Q target\*
-	$(GO) build -o target\YourPlace.exe main.go
+	$(GO) build -o target\YourPlaceBeta.exe main.go
 else
 	rm -f target/*
-	go build -o target/YourPlace main.go
+	go build -o target/YourPlaceBeta main.go
 endif
 
 linuxbuild:
@@ -54,8 +54,8 @@ endif
 
 run:
 ifeq ($(OS), Windows_NT)
-	target/YourPlace.exe
+	target/YourPlaceBeta.exe
 else
 	cp config.yaml target/config.yaml
-	./target/YourPlace
+	./target/YourPlaceBeta
 endif
