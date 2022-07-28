@@ -7,6 +7,7 @@ GO=C:\Program Files\Go\bin\go.exe
 NODE=C:\Program Files\nodejs
 export PATH:=$(NODE);$(PATH)
 else
+OS=$(cat /etc/lsb-release)
 GO=$(which go)
 NPX=$(which npx)
 NPM=$(which npm)
@@ -32,16 +33,10 @@ else
 endif
 
 linuxbuild:
-	npx webpack --config src/typescript/webpack.config.js
-# ifeq ($(OS), Windows_NT)
-#	IF EXIST target\ del /F /Q target\*
-#	$(GO) build -o target\YourPlace.exe main.go
-#else
-#	rm -f target/*
+	$(NPX) webpack --config src/typescript/webpack.config.js
 	export GOARCH=amd64
 	export GOOS=linux
-	go build -o target/YourPlace main.go
-#endif
+	$(GO) build -o target/YourPlace main.go
 
 clean:
 ifeq ($(OS), Windows_NT)

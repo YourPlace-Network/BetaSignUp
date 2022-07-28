@@ -6,3 +6,9 @@ You must configure the secrets and certificates. Copy "sample-config.yaml" to "c
 to match your service credentials.
 
 > make install clean build run
+
+#### Ubuntu Build
+
+> sudo apt install nodejs npm golang
+> 
+> make clean build run

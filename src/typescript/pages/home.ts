@@ -57,7 +57,6 @@ async function submitButton() {
     let email_string = email.value;
     let address_string = address.value;
     let captcha_string = captcha.value;
-    console.log(address_string);
     if (email_string == "") {
         emailError();
         return;
