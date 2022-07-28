@@ -12,7 +12,7 @@ module.exports = {
         success: './pages/success.ts',
         failure: './pages/failure.ts',
     },
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [{
             test: /\.tsx?$/,
