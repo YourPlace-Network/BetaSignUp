@@ -2,6 +2,7 @@ server:
   port: 443
   cert: server.crt
   key: server.key
+  phone: 1234567890
 hcaptcha:
   sitekey: aaaaaaaaaaaaaaaaa
   secret: aaaaaaaaaaaaaaaaa

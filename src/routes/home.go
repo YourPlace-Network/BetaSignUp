@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey string) {
+func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey string, phone string) {
 	type Signup struct {
 		Email           string `json:"email" binding:"required"`
 		CaptchaResponse string `json:"captchaResponse" binding:"required"`
@@ -19,6 +19,7 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "src/templates/pages/home.tmpl", gin.H{
 			"sitekey": sitekey,
+			"phone":   phone,
 		})
 	})
 

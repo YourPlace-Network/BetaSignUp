@@ -7,6 +7,7 @@ import (
 	"embed"
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
+	"gopkg.in/yaml.v3"
 	"html/template"
 	"io/fs"
 	"io/ioutil"
@@ -31,9 +32,10 @@ func main() {
 	// Initialize Config File
 	type Conf struct {
 		Server struct {
-			Port int    `yaml:"port"`
-			Cert string `yaml:"cert"`
-			Key  string `yaml:"key"`
+			Port  int    `yaml:"port"`
+			Cert  string `yaml:"cert"`
+			Key   string `yaml:"key"`
+			Phone string `yaml:"phone"`
 		}
 		Hcaptcha struct {
 			SiteKey string `yaml:"sitekey"`
@@ -73,7 +75,11 @@ func main() {
 	router.StaticFS("/static", staticFS())
 	LoadTemplates(router, templateFS, "src/templates/*tmpl")
 	router.MaxMultipartMemory = 8 << 20
-	routes.HomeRoutes(router, database, conf.Hcaptcha.Secret, conf.Hcaptcha.SiteKey)
+	routes.HomeRoutes(router,
+		database,
+		conf.Hcaptcha.Secret,
+		conf.Hcaptcha.SiteKey,
+		conf.Server.Phone)
 	// Start Gin Server
 	// https://gin-gonic.com/docs/examples/graceful-restart-or-stop/
 	srv := &http.Server{

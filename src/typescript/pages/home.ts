@@ -81,6 +81,7 @@ async function submitButton() {
         "algoAddress": address_string,
         "captchaResponse": captcha_string,
     }
+    console.log(data);
     const response = await fetch("/signup", {
         method: "POST",
         redirect: "follow",
@@ -93,6 +94,14 @@ async function submitButton() {
     if (response.redirected) {
         window.location.assign("/success");
     }
+}
+function formatPhone(number: string) {
+    let phone = <HTMLElement>document.getElementById("phone")!;
+    let phoneStr = phone.innerText;
+    let area = phoneStr.slice(0, 3);
+    let city = phoneStr.slice(3, 6);
+    let num = phoneStr.slice(6, 10);
+    phone.innerText = "(" + area + ") " + city + "-" + num;
 }
 
 /* ----- Event Handlers ----- */
@@ -123,3 +132,8 @@ declare global {
     }
 }
 window.captchaSubmit = captchaCallback;
+
+window.onload = function() {
+    let phone = <HTMLElement>document.getElementById("phone")!;
+    formatPhone(phone.innerText);
+}
