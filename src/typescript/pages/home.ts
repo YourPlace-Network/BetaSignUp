@@ -1,5 +1,6 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import '../../scss/pages/home.scss';
+//import "../components/preloader";
 import {hideCheck, showCheck} from "../components/check";
 import {PeraWalletConnect} from "@perawallet/connect";
 import MyAlgoConnect from "@randlabs/myalgo-connect";
@@ -7,12 +8,6 @@ import {decodeAddress} from "algosdk";
 
 /* ----- Wallet Initialization ----- */
 const peraWallet = new PeraWalletConnect();
-peraWallet.reconnectSession().then((accounts) => {
-    peraWallet.connector?.on("disconnect", walletDisconnected);
-    if (accounts.length) {
-        walletConnected(accounts[0]);
-    }
-});
 const myAlgoWallet = new MyAlgoConnect();
 
 /* ----- Functions ----- */
@@ -41,8 +36,8 @@ function emailClearError() {
 function captchaCallback(response: string) {
     let responseElement = <HTMLInputElement>document.getElementById("hcaptcha-response")!;
     let button = <HTMLButtonElement>document.getElementById("submitBtn")!;
-    responseElement.value = response;
     button.disabled = false;
+    responseElement.value = response;
 }
 function captchaError() {
     let captchaElement = <HTMLDivElement>document.getElementById("h-captcha")!;
@@ -70,18 +65,15 @@ async function submitButton() {
             let addr = decodeAddress(address_string);
         } catch (e) {
             console.log("address failed validation");
-            walletDisconnected();
+            //walletDisconnected();
             return;
         }
-        walletDisconnected();
-        return;
     }
     const data = {
         "email": email_string,
         "algoAddress": address_string,
         "captchaResponse": captcha_string,
     }
-    console.log(data);
     const response = await fetch("/signup", {
         method: "POST",
         redirect: "follow",
@@ -95,7 +87,7 @@ async function submitButton() {
         window.location.assign("/success");
     }
 }
-function formatPhone(number: string) {
+function formatPhone() {
     let phone = <HTMLElement>document.getElementById("phone")!;
     let phoneStr = phone.innerText;
     let area = phoneStr.slice(0, 3);
@@ -107,10 +99,14 @@ function formatPhone(number: string) {
 /* ----- Event Handlers ----- */
 document.getElementById("submitBtn")!.addEventListener("click", submitButton);
 document.getElementById("peraBtn")!.addEventListener("click", function() {
-    peraWallet.connect().then((newAccounts) => {
-        peraWallet.connector?.on("disconnect", walletDisconnected);
-        walletConnected(newAccounts[0]);
-    });
+    try {
+        peraWallet.connect().then((newAccounts) => {
+            peraWallet.connector?.on("disconnect", walletDisconnected);
+            walletConnected(newAccounts[0]);
+        });
+    } catch (e) {
+        console.log("wallet already connected: " + e);
+    }
 });
 document.getElementById("myalgoBtn")!.addEventListener("click", async function() {
     const accounts = await myAlgoWallet.connect();
@@ -134,6 +130,5 @@ declare global {
 window.captchaSubmit = captchaCallback;
 
 window.onload = function() {
-    let phone = <HTMLElement>document.getElementById("phone")!;
-    formatPhone(phone.innerText);
+    formatPhone();
 }
