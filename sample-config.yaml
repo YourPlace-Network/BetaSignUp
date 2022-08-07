@@ -9,7 +9,7 @@ hcaptcha:
 mysql:
   host: db.domain.tld
   port: 12345
-  database: dbname
+  database: signup
   username: admin
   password: aaaaaaaaaaaaaaaaaaaaaaaaaa
   ca: ca-certificate.crt
