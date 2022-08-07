@@ -1,0 +1,8 @@
+CREATE DATABASE signup;
+
+CREATE TABLE signup.users (
+    email varchar(255) NOT NULL,
+    algoAddress varchar(60),
+    created_at datetime NOT NULL,
+    PRIMARY KEY (email)
+);

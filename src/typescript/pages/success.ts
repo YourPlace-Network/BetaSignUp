@@ -1,6 +1,7 @@
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import '../../scss/pages/success.scss';
 
+/*
 function openStore(name: string) {
     let url;
     if (name == "appstore") {
@@ -23,3 +24,4 @@ document.getElementById("imgAppstore")!.addEventListener("click", function() {
 document.getElementById("imgPlaystore")!.addEventListener("click", function() {
     openStore("playstore");
 });
+*/
