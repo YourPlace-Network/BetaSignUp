@@ -70,10 +70,9 @@ async function submitButton() {
     }
     if (address_string) {
         try {
-            let addr = decodeAddress(address_string);
+            decodeAddress(address_string);
         } catch (e) {
             console.log("address failed validation");
-            //walletDisconnected();
             return;
         }
     }
