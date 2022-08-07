@@ -8,6 +8,14 @@ import {decodeAddress} from "algosdk";
 
 /* ----- Wallet Initialization ----- */
 const peraWallet = new PeraWalletConnect();
+try {
+    peraWallet.reconnectSession().then((accounts) => {
+        peraWallet.connector?.on("disconnect", walletDisconnected);
+        walletConnected(accounts[0]);
+    });
+} catch (e) {
+    // No-Op if wallet can't find existing session
+}
 const myAlgoWallet = new MyAlgoConnect();
 
 /* ----- Functions ----- */
@@ -17,10 +25,10 @@ function walletConnected(algoAddress: string) {
     showCheck("walletConnectCheck");
 }
 function walletDisconnected() {
+    window.localStorage.removeItem("walletconnect");
     let address = <HTMLInputElement>document.getElementById("address")!;
     address.value = "";
     peraWallet.disconnect();
-    window.localStorage.removeItem("walletconnect");
     hideCheck("walletConnectCheck");
 }
 function emailError() {
@@ -85,6 +93,8 @@ async function submitButton() {
     });
     if (response.redirected) {
         window.location.assign("/success");
+    } else {
+        window.location.assign("/failure");
     }
 }
 function formatPhone() {
@@ -100,9 +110,9 @@ function formatPhone() {
 document.getElementById("submitBtn")!.addEventListener("click", submitButton);
 document.getElementById("peraBtn")!.addEventListener("click", function() {
     try {
-        peraWallet.connect().then((newAccounts) => {
+        peraWallet.connect().then((accounts) => {
             peraWallet.connector?.on("disconnect", walletDisconnected);
-            walletConnected(newAccounts[0]);
+            walletConnected(accounts[0]);
         });
     } catch (e) {
         console.log("wallet already connected: " + e);
