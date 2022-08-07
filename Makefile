@@ -45,10 +45,12 @@ ifeq ($(OS), Windows_NT)
 	$(PS) Remove-Item $(EXECUTABLE)*.exe -Force -Recurse -ErrorAction SilentlyContinue
 	$(PS) Remove-Item main*.exe -Force -Recurse -ErrorAction SilentlyContinue
 	$(PS) Remove-Item yarn*.lock -Force -Recurse -ErrorAction SilentlyContinue
+	$(PS) Remove-Item src/www/js/* -Force -Recurse -ErrorAction SilentlyContinue
 	$(GO) clean
 else
 	@echo "Not Windows"
 	rm -rf *.out ||:
+	rm -rf src/www/js/*
 	go clean
 endif
 
