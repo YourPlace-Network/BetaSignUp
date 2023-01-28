@@ -47,6 +47,8 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 			c.AbortWithStatus(400)
 			return
 		}
+		fmt.Println("email: " + signup.Email)
+		fmt.Println("address: " + signup.AlgoAddress)
 		if !security.ValidateEmail(signup.Email) {
 			fmt.Println("Email verification failure")
 			c.AbortWithStatus(400)
@@ -55,8 +57,8 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 		if signup.AlgoAddress != "" {
 			if !security.ValidateAlgoAddress(signup.AlgoAddress) {
 				fmt.Println("Algo address verification failure")
-				c.AbortWithStatus(400)
-				return
+				//c.AbortWithStatus(400)
+				//return
 			}
 		}
 		exists := database.DoesContactExist(signup.Email)
