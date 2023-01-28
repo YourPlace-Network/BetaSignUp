@@ -1,3 +1,5 @@
+import {Exception} from "sass";
+
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import '../../scss/pages/home.scss';
 //import "../components/preloader";
@@ -68,11 +70,14 @@ async function submitButton() {
         captchaError();
         return;
     }
-    if (address_string) {
+    console.log("address string: " + address_string);
+    console.log("email string: " + email_string);
+    console.log("captcha string: " + captcha_string)
+    if (address_string.length >= 2) {
         try {
             decodeAddress(address_string);
-        } catch (e) {
-            console.log("address failed validation");
+        } catch (e: any) {
+            console.log("address failed validation: " + (e as Error).message);
             return;
         }
     }
