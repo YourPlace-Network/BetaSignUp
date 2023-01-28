@@ -62,7 +62,7 @@ func main() {
 	// Initialize Database Connection
 	database := new(db.MySQL)
 	dsn := conf.Mysql.Username + ":" + conf.Mysql.Password + "@tcp(" + conf.Mysql.Host + ":" + strconv.Itoa(conf.Mysql.Port) + ")/"
-	dsn += conf.Mysql.Database + "?tls=custom&timeout=60s"
+	dsn += conf.Mysql.Database + "?tls=custom&timeout=120s"
 	database.Init(dsn, conf.Mysql.CA)
 	database.Setup()
 	// Configure Gin Server
