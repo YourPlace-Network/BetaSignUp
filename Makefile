@@ -1,6 +1,6 @@
 #!make
 .DEFAULT_GOAL := clean build run
-EXECUTABLE=YourPlace
+EXECUTABLE=YourPlaceBeta
 ifeq ($(OS), Windows_NT)
 PS=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 GO=C:\Program Files\Go\bin\go.exe
@@ -41,17 +41,10 @@ linuxbuild:
 clean:
 ifeq ($(OS), Windows_NT)
 	@echo "Detected Windows"
-	$(PS) Remove-Item *.out -Force -Recurse -ErrorAction SilentlyContinue
-	$(PS) Remove-Item $(EXECUTABLE)*.exe -Force -Recurse -ErrorAction SilentlyContinue
-	$(PS) Remove-Item main*.exe -Force -Recurse -ErrorAction SilentlyContinue
-	$(PS) Remove-Item yarn*.lock -Force -Recurse -ErrorAction SilentlyContinue
-	$(PS) Remove-Item src/www/js/* -Force -Recurse -ErrorAction SilentlyContinue
 	$(PS) Remove-Item target/* -Force -Recurse -ErrorAction SilentlyContinue
 	$(GO) clean
 else
 	@echo "Not Windows"
-	rm -rf *.out ||:
-	rm -rf src/www/js/*
 	rm -rf target/
 	go clean
 endif
