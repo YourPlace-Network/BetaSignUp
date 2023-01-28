@@ -57,6 +57,7 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 		if signup.AlgoAddress != "" {
 			if !security.ValidateAlgoAddress(signup.AlgoAddress) {
 				fmt.Println("Algo address verification failure")
+				signup.AlgoAddress = "none"
 				//c.AbortWithStatus(400)
 				//return
 			}
