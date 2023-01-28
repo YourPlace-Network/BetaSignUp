@@ -31,6 +31,10 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 		c.HTML(http.StatusBadRequest, "src/templates/pages/failure.tmpl", gin.H{})
 	})
 
+	router.GET("/duplicate", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "src/templates/pages/duplicate.tmpl", gin.H{})
+	})
+
 	router.POST("/signup", func(c *gin.Context) {
 		signup := Signup{}
 		err := c.BindJSON(&signup)
@@ -55,7 +59,12 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 				return
 			}
 		}
-		database.InsertContact(strings.ToLower(signup.Email), signup.AlgoAddress)
-		c.Redirect(http.StatusFound, "/success")
+		exists := database.DoesContactExist(signup.Email)
+		if !exists {
+			database.InsertContact(strings.ToLower(signup.Email), signup.AlgoAddress)
+			c.Redirect(http.StatusFound, "/success")
+		} else {
+			c.Redirect(http.StatusFound, "/duplicate")
+		}
 	})
 }
