@@ -78,7 +78,6 @@ async function submitButton() {
             decodeAddress(address_string);
         } catch (e: any) {
             console.log("address failed validation: " + (e as Error).message);
-            return;
         }
     }
     const data = {
