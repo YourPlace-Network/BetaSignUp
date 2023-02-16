@@ -65,15 +65,13 @@ func (mysql *MySQL) Setup() {
 }
 
 func (mysql *MySQL) DoesContactExist(email string) bool {
-	query := `SELECT * FROM signup.users WHERE email = '?'`
+	query := `SELECT EXISTS(SELECT * FROM signup.users WHERE email = ?)`
 	rows, err := mysql.DB.Query(query, email)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 	defer rows.Close()
-	if rows.Next() {
-		return true
-	}
+
 	return false
 }
 
