@@ -40,11 +40,9 @@ linuxbuild:
 
 clean:
 ifeq ($(OS), Windows_NT)
-	@echo "Detected Windows"
 	$(PS) Remove-Item target/* -Force -Recurse -ErrorAction SilentlyContinue
 	$(GO) clean
 else
-	@echo "Not Windows"
 	rm -rf target/
 	go clean
 endif

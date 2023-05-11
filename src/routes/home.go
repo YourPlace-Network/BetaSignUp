@@ -32,7 +32,7 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 	})
 
 	router.GET("/duplicate", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "src/templates/pages/duplicate.tmpl", gin.H{})
+		c.HTML(http.StatusConflict, "src/templates/pages/duplicate.tmpl", gin.H{})
 	})
 
 	router.POST("/signup", func(c *gin.Context) {
@@ -58,16 +58,16 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 			if !security.ValidateAlgoAddress(signup.AlgoAddress) {
 				fmt.Println("Algo address verification failure")
 				signup.AlgoAddress = "none"
-				//c.AbortWithStatus(400)
-				//return
+				c.AbortWithStatus(400)
+				return
 			}
 		}
 		exists := database.DoesContactExist(signup.Email)
 		if !exists {
 			database.InsertContact(strings.ToLower(signup.Email), signup.AlgoAddress)
-			c.Redirect(http.StatusFound, "/success")
+			c.Redirect(http.StatusOK, "/success")
 		} else {
-			c.Redirect(http.StatusFound, "/duplicate")
+			c.Redirect(http.StatusConflict, "/duplicate")
 		}
 	})
 }

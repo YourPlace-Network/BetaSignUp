@@ -1,7 +1,7 @@
 package security
 
 import (
-	"github.com/algorand/go-algorand-sdk/types"
+	"github.com/algorand/go-algorand-sdk/v2/types"
 	"net/mail"
 )
 
