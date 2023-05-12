@@ -65,9 +65,9 @@ func HomeRoutes(router *gin.Engine, database *db.MySQL, secret string, sitekey s
 		exists := database.DoesContactExist(signup.Email)
 		if !exists {
 			database.InsertContact(strings.ToLower(signup.Email), signup.AlgoAddress)
-			c.Redirect(http.StatusOK, "/success")
+			c.Redirect(http.StatusFound, "/success")
 		} else {
-			c.Redirect(http.StatusConflict, "/duplicate")
+			c.Redirect(http.StatusFound, "/duplicate")
 		}
 	})
 }
