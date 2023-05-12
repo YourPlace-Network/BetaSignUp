@@ -7,10 +7,10 @@ module.exports = {
     context: path.resolve(__dirname, ''),
     devtool: 'inline-source-map',
     entry: {
-        //global: './global.ts',
         home: './pages/home.ts',
         success: './pages/success.ts',
         failure: './pages/failure.ts',
+        duplicate: './pages/duplicate.ts'
     },
     mode: 'production',
     module: {
@@ -33,9 +33,7 @@ module.exports = {
                 loader: 'postcss-loader',  // Loader for webpack to process CSS with PostCSS
                 options: {
                     postcssOptions: {
-                        plugins: [
-                            ["autoprefixer", {}]
-                        ]
+                        plugins: [["autoprefixer", {}]]
                     }
                 }
             },{
