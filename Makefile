@@ -8,9 +8,7 @@ NODE=C:\Program Files\nodejs
 export PATH:=$(NODE);$(PATH)
 else
 OS=$(cat /etc/lsb-release)
-GO=$(which go)
 NPX=$(which npx)
-NPM=$(which npm)
 NODE=$(which node)
 endif
 
@@ -19,7 +17,7 @@ ifeq ($(OS), Windows_NT)
 	choco install -y --force nodejs
 	npm install package.json
 else
-	$(NPM) install package.json
+	npm install package.json
 endif
 
 build:
