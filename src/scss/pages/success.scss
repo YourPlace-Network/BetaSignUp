@@ -1,18 +1,8 @@
 @import "../global.scss";
 
 #logo {
-  height: 90px;
+  min-height: 90px;
   max-width: 400px;
-  padding-bottom: 15px;
-}
-
-.img-store {
-  width: 175px;
-  height: 60px;
-  cursor: pointer;
-  transition: all .1s ease-in-out;
-}
-
-.img-store:hover {
-  transform: scale(1.1);
+  padding-bottom: 20px;
+  padding-top: 15px;
 }
