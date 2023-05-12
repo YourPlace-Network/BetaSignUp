@@ -22,7 +22,7 @@ try {
 function walletConnected(algoAddress: string) {
     let address = <HTMLInputElement>document.getElementById("address")!;
     address.value = algoAddress;
-    //showCheck("walletConnectCheck");
+    showCheck("walletConnectCheck");
 }
 function walletDisconnected() {
     window.localStorage.removeItem("walletconnect");
