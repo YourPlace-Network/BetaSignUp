@@ -19,10 +19,11 @@ ifeq ($(OS), Windows_NT)
 	choco install -y --force nodejs
 	npm install package.json
 else
-	npm install package.json
+	$(NPM) install package.json
 endif
 
 build:
+	npm install package.json
 	npx webpack --config src/typescript/webpack.config.js
 ifeq ($(OS), Windows_NT)
 	IF EXIST target\ del /F /Q target\*
@@ -40,17 +41,20 @@ linuxbuild:
 
 clean:
 ifeq ($(OS), Windows_NT)
-	$(PS) Remove-Item target/* -Force -Recurse -ErrorAction SilentlyContinue
+	$(PS) -Command "& {Remove-Item target/ -Force -Recurse -ErrorAction SilentlyContinue}"
+	$(PS) -Command "& {Remove-Item node_modules/ -Force -Recurse -ErrorAction SilentlyContinue}"
+	$(PS) -Command "& {Remove-Item src/www/js/ -Force -Recurse -ErrorAction SilentlyContinue}"
 	$(GO) clean
 else
 	rm -rf target/
+	rm -rf node_modules/
+	rm -rf src/www/js/
 	go clean
 endif
 
 run:
 ifeq ($(OS), Windows_NT)
-	target/YourPlaceBeta.exe
+	target/YourPlaceBeta.exe config.yaml
 else
-	cp config.yaml target/config.yaml
-	./target/YourPlaceBeta
+	./target/YourPlaceBeta config.yaml
 endif

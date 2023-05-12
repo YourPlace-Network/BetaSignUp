@@ -18,6 +18,6 @@ target/
 node_modules/
 config.yaml
 *.crt
-src/www/js/*
+src/www/js/
 stats.json
 ca-certificate.crt
