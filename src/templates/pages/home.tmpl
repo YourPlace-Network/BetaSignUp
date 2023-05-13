@@ -1,4 +1,5 @@
 {{template "head" .}}
+<!--suppress ALL -->
 <script src="/static/js/home.js" type="application/javascript" defer></script>
 </head>
 <body class="body">
@@ -9,9 +10,14 @@
             <div class="col-sm-8">
                 <section>
                     <div class="centered">
-                        <header><img src="/static/image/yourplace-banner.png" id="logo"><!--<h2 id="YourPlace">YourPlace</h2>--></header>
+                        <header><img src="/static/image/yourplace-banner.png" id="logo" alt="YourPlace Banner"></header>
                         <h6 id="subtagline"><a href="https://github.com/YourPlace-Network" target="_blank" rel="noreferrer noopener">
                                 Open Source</a> & Built on the Algorand Blockchain</h6>
+                        <div class="links">
+                            <a href="https://whitepaper.yourplace.network" target="_blank" rel="noreferrer noopener"><img src="/static/image/whitepaper.png" class="linksImg" alt="White Paper Icon"></a>
+                            <a href="https://twitter.com/YourPlace_Inc" target="_blank" rel="noreferrer noopener"><img src="/static/image/twitter.png" class="linksImg" alt="Twitter Icon"></a>
+                            <a href="https://www.linkedin.com/company/yourplace-network/" target="_blank" rel="noreferrer noopener"><img src="/static/image/linkedin.png" class="linksImg" alt="LinkedIn Icon"></a>
+                        </div>
                         <h5 id="calltoaction">---------- Beta Sign Up ----------</h5>
                     </div>
                     <form action="/signup" method="POST">

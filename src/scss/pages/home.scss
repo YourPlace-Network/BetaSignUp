@@ -12,6 +12,17 @@ header {
   max-width: 400px;
   padding-bottom: 20px;
 }
+.linksImg {
+  padding: 10px;
+  height: 75px;
+  width: 75px;
+}
+#calltoaction {
+  padding-top: 10px;
+}
+.linksImg:hover {
+  transform: scale(1.1);
+}
 .btn {
   transition: all .2s ease-in-out;
 }
