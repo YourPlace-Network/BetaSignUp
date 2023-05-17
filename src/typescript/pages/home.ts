@@ -1,11 +1,8 @@
-import {Exception} from "sass";
-
 window.bootstrap = require('bootstrap/dist/js/bootstrap.bundle');
 import '../../scss/pages/home.scss';
-//import "../components/preloader";
 import {hideCheck, showCheck} from "../components/check";
 import {PeraWalletConnect} from "@perawallet/connect";
-import {decodeAddress} from "algosdk";
+import {decodeAddress} from "algosdk"
 
 /* ----- Wallet Initialization ----- */
 const peraWallet = new PeraWalletConnect();
@@ -118,25 +115,6 @@ function formatPhone() {
     phone.innerText = "(" + area + ") " + city + "-" + num;
 }
 
-/* ----- Event Handlers ----- */
-document.getElementById("submitBtn")!.addEventListener("click", submitButton);
-document.getElementById("peraBtn")!.addEventListener("click", function() {
-    try {
-        peraWallet.connect().then((accounts) => {
-            peraWallet.connector?.on("disconnect", walletDisconnected);
-            walletConnected(accounts[0]);
-        });
-    } catch (e) {
-        console.log("wallet already connected: " + e);
-    }
-});
-document.getElementById("email")!.addEventListener("keyup", function() {
-    let emailDiv = <HTMLInputElement>document.getElementById("email")!;
-    if (emailDiv.size && emailDiv.style.borderStyle != "none") {
-        emailClearError();
-    }
-});
-
 // Extending global window object to include hcaptcha callback function
 // https://stackoverflow.com/questions/56457935/typescript-error-property-x-does-not-exist-on-type-window
 declare global {
@@ -147,5 +125,24 @@ declare global {
 window.captchaSubmit = captchaCallback;
 
 window.onload = function() {
+    /* ----- Event Handlers ----- */
+    document.getElementById("submitBtn")!.addEventListener("click", submitButton);
+    document.getElementById("peraBtn")!.addEventListener("click", function() {
+        try {
+            peraWallet.connect().then((accounts) => {
+                peraWallet.connector?.on("disconnect", walletDisconnected);
+                walletConnected(accounts[0]);
+            });
+        } catch (e) {
+            console.log("wallet already connected: " + e);
+        }
+    });
+    document.getElementById("email")!.addEventListener("keyup", function() {
+        let emailDiv = <HTMLInputElement>document.getElementById("email")!;
+        if (emailDiv.size && emailDiv.style.borderStyle != "none") {
+            emailClearError();
+        }
+    });
+
     formatPhone();
 }
