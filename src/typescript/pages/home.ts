@@ -148,7 +148,7 @@ window.onload = function() {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new window.bootstrap.Tooltip(
             tooltipTriggerEl,
-            {delay: {show: 2000, hide: 0},
+            {delay: {show: 1000, hide: 0},
                 placement: "top",
                 offset: [0, 10],}
         );
