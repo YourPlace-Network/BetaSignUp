@@ -144,5 +144,14 @@ window.onload = function() {
         }
     });
 
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new window.bootstrap.Tooltip(
+            tooltipTriggerEl,
+            {delay: {show: 2000, hide: 0},
+                placement: "top",
+                offset: [0, 10],}
+        );
+    });
     formatPhone();
 }
