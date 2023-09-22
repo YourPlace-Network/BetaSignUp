@@ -4,6 +4,7 @@ Description=YourPlaceBeta
 [Service]
 ExecStart=/opt/YourPlace/YourPlaceBeta
 WorkingDirectory=/opt/YourPlace
+StandardOutput=append:/var/log/yourplacebeta-stdout.log
 Restart=always
 
 [Install]
