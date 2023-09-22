@@ -54,5 +54,5 @@ run:
 ifeq ($(OS), Windows_NT)
 	target/YourPlaceBeta.exe config.yaml
 else
-	./target/YourPlaceBeta config.yaml
+	sudo $(systemctl daemon-reload && systemctl restart YourPlaceBeta.service)
 endif

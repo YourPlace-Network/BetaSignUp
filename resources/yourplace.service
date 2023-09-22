@@ -3,6 +3,8 @@ Description=YourPlaceBeta
 
 [Service]
 ExecStart=/home/nops/BetaSignUp/target/YourPlaceBeta config.yaml
+User=nops
+Group=nops
 WorkingDirectory=/home/nops
 StandardOutput=append:/var/log/yourplacebeta.log
 Restart=always
