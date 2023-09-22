@@ -2,9 +2,9 @@
 Description=YourPlaceBeta
 
 [Service]
-ExecStart=/opt/YourPlace/YourPlaceBeta
-WorkingDirectory=/opt/YourPlace
-StandardOutput=append:/var/log/yourplacebeta-stdout.log
+ExecStart=/home/nops/BetaSignUp/target/YourPlaceBeta config.yaml
+WorkingDirectory=/home/nops
+StandardOutput=append:/var/log/yourplacebeta.log
 Restart=always
 
 [Install]
