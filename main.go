@@ -28,6 +28,9 @@ var templateFS embed.FS
 //go:embed src/www
 var wwwFS embed.FS
 
+//go:embed resources/yourplace.service
+var systemdUnit []byte
+
 func main() {
 	// Initialize Config File
 	type Conf struct {

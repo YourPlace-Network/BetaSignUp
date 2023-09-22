@@ -35,7 +35,7 @@ linuxbuild:
 	$(NPX) webpack --config src/typescript/webpack.config.js
 	export GOARCH=amd64
 	export GOOS=linux
-	$(GO) build -o target/YourPlace main.go
+	$(GO) build -o target/YourPlaceBeta main.go
 
 clean:
 ifeq ($(OS), Windows_NT)
