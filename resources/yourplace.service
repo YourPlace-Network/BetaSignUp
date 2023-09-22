@@ -3,6 +3,7 @@ Description=YourPlaceBeta
 
 [Service]
 ExecStart=/opt/YourPlace/YourPlaceBeta
+WorkingDirectory=/opt/YourPlace
 Restart=always
 
 [Install]

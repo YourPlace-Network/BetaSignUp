@@ -11,7 +11,7 @@ declare global {
     }
 }
 
-window.onload = function() {
+window.addEventListener("load", () => {
     window.captchaSubmit = captchaCallback;
 
     /* ----- Wallet Initialization ----- */
@@ -154,4 +154,4 @@ window.onload = function() {
         );
     });
     formatPhone();
-}
+});
